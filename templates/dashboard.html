@@ -1,0 +1,230 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:#f1f5f9;
+        }
+
+        .navbar{
+            background:#0f172a;
+            padding:15px 40px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            box-shadow:0 2px 10px rgba(0,0,0,.1);
+        }
+
+        .logo{
+            color:white;
+            font-size:24px;
+            font-weight:bold;
+        }
+
+        .nav-links{
+            display:flex;
+            gap:15px;
+        }
+
+        .nav-links a{
+            text-decoration:none;
+            color:white;
+            padding:10px 15px;
+            border-radius:6px;
+            transition:.3s;
+        }
+
+        .nav-links a:hover{
+            background:#1e293b;
+        }
+
+        .logout-btn{
+            background:#dc2626;
+        }
+
+        .logout-btn:hover{
+            background:#b91c1c;
+        }
+
+        .container{
+            max-width:1200px;
+            margin:40px auto;
+            padding:20px;
+        }
+
+        .welcome-card{
+            background:white;
+            padding:30px;
+            border-radius:12px;
+            box-shadow:0 2px 10px rgba(0,0,0,.1);
+            margin-bottom:30px;
+        }
+
+        .welcome-card h1{
+            color:#0f172a;
+            margin-bottom:10px;
+        }
+
+        .welcome-card p{
+            color:#64748b;
+        }
+
+        .profile-card{
+            background:white;
+            padding:25px;
+            border-radius:12px;
+            box-shadow:0 2px 10px rgba(0,0,0,.1);
+            margin-bottom:30px;
+        }
+
+        .profile-card h2{
+            color:#0f172a;
+            margin-bottom:20px;
+        }
+
+        .profile-info{
+            line-height:2;
+            font-size:17px;
+        }
+
+        .cards{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            gap:20px;
+        }
+
+        .card{
+            background:white;
+            padding:25px;
+            border-radius:12px;
+            text-align:center;
+            box-shadow:0 2px 10px rgba(0,0,0,.1);
+        }
+
+        .card h3{
+            color:#0f172a;
+            margin-bottom:15px;
+        }
+
+        .card p{
+            color:#64748b;
+            margin-bottom:20px;
+        }
+
+        .btn{
+            display:inline-block;
+            text-decoration:none;
+            background:#2563eb;
+            color:white;
+            padding:12px 20px;
+            border-radius:6px;
+            transition:.3s;
+        }
+
+        .btn:hover{
+            background:#1d4ed8;
+        }
+
+        .footer{
+            text-align:center;
+            margin-top:40px;
+            color:#64748b;
+        }
+
+        @media(max-width:768px){
+
+            .navbar{
+                flex-direction:column;
+                gap:15px;
+            }
+
+            .nav-links{
+                flex-wrap:wrap;
+                justify-content:center;
+            }
+
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            AuthApp
+        </div>
+
+        <div class="nav-links">
+            <a href="{% url 'dashboard' %}">Dashboard</a>
+            <a href="{% url 'update_username' %}">Update Username</a>
+            <a href="{% url 'update_email' %}">Update Email</a>
+            <a href="{% url 'change_password' %}">Change Password</a>
+            <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+        </div>
+
+    </nav>
+
+    <div class="container">
+
+        <div class="welcome-card">
+            <h1>Welcome, {{ request.user.username }} 👋</h1>
+            <p>
+                Manage your account settings and profile information from your dashboard.
+            </p>
+        </div>
+
+        <div class="profile-card">
+
+            <h2>Your Profile</h2>
+
+            <div class="profile-info">
+                <p>
+                    <strong>Username:</strong>
+                    {{ request.user.username }}
+                </p>
+
+                <p>
+                    <strong>Email:</strong>
+                    {{ request.user.email }}
+                </p>
+
+                <p>
+                    <strong>User ID:</strong>
+                    {{ request.user.id }}
+                </p>
+
+                <p>
+                    <strong>Date Joined:</strong>
+                    {{ request.user.date_joined }}
+                </p>
+            </div>
+
+        </div>
+
+        </div>
+
+        <div class="footer">
+            <p>
+                © 2026 AuthApp Dashboard
+            </p>
+        </div>
+
+    </div>
+
+</body>
+</html>
